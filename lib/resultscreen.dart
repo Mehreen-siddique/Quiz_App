@@ -22,14 +22,16 @@ class resultScreen extends StatefulWidget {
 class _resultScreenState extends State<resultScreen> {
    int gmarks = 0;
    int tmarks = 0;
-   int percentage = 0;
+   double  percentage = 0;
+   String? FormatedPercentage;
   @override
    void initState() {
     // TODO: implement initState
     gmarks = widget.gotmarks;
     tmarks = widget.totalQuizMarks;
 
-    percentage = ((gmarks / tmarks)*100) as int;
+    percentage = ((gmarks / tmarks)*100) ;
+    FormatedPercentage = percentage.toStringAsFixed(2);
     super.initState();
   // same as for other total marks then use it in text widget to sow marks.
   // this is the method sir do in the class.
@@ -52,7 +54,7 @@ class _resultScreenState extends State<resultScreen> {
                 fontSize: 40,
                 fontWeight: FontWeight.bold
               ),),
-              Text('You got $percentage %',
+              Text('You got $FormatedPercentage %',
                 textAlign: TextAlign.center
 
                 , style: TextStyle(
