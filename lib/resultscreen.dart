@@ -51,16 +51,57 @@ class _resultScreenState extends State<resultScreen> {
                 textAlign: TextAlign.center
 
                 , style: TextStyle(
-                fontSize: 40,
+                fontSize: 30,
                 fontWeight: FontWeight.bold
               ),),
               Text('You got $FormatedPercentage %',
                 textAlign: TextAlign.center
 
                 , style: TextStyle(
-                    fontSize: 40,
+                    fontSize: 30,
                     fontWeight: FontWeight.bold
                 ),),
+              SizedBox(height: 10,),
+              Image(
+                  image: AssetImage("images/1.jpg")),
+
+              SizedBox(height: 10,),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0Xfff64A6BD)
+                  ),
+
+                  onPressed: (){
+                    setState(() {
+
+                    });
+
+                  }
+                  , child: Text('RETRY', style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
+                  color: Colors.white
+              ),)
+              ),
+
+              SizedBox(height: 10,),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0XfffD7B9D5)
+                  ),
+
+                  onPressed: (){
+                    setState(() {
+
+                    });
+
+                  }
+                  , child: Text('Exit', style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
+                  color: Colors.white
+              ),)
+              ),
             ],
           ),
         ),
