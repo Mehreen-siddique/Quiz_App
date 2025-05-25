@@ -1,5 +1,6 @@
  import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz/quiz.dart' show quizFile;
 
 void main(){
  }
@@ -24,6 +25,7 @@ class _resultScreenState extends State<resultScreen> {
    int tmarks = 0;
    double  percentage = 0;
    String? FormatedPercentage;
+   
   @override
    void initState() {
     // TODO: implement initState
@@ -36,6 +38,18 @@ class _resultScreenState extends State<resultScreen> {
   // same as for other total marks then use it in text widget to sow marks.
   // this is the method sir do in the class.
 }
+
+void SelectionImage(){
+    if(gmarks>=tmarks){
+      SizedBox(height: 10,);
+  Image(
+  image: AssetImage("images/1.jpg"));
+    }else{
+      Image(
+        image: AssetImage("images/2.webp"),
+      );
+    }
+} 
 
 
   @override
@@ -60,10 +74,12 @@ class _resultScreenState extends State<resultScreen> {
                 , style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold
+
+
+
                 ),),
-              SizedBox(height: 10,),
-              Image(
-                  image: AssetImage("images/1.jpg")),
+
+
 
               SizedBox(height: 10,),
               ElevatedButton(
@@ -74,6 +90,9 @@ class _resultScreenState extends State<resultScreen> {
                   onPressed: (){
                     setState(() {
 
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) => quizFile())
+                      );
                     });
 
                   }
@@ -92,7 +111,6 @@ class _resultScreenState extends State<resultScreen> {
 
                   onPressed: (){
                     setState(() {
-
                     });
 
                   }
