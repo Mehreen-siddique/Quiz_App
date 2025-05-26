@@ -1,5 +1,6 @@
  import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:quiz/quiz.dart' show quizFile;
 
 void main(){
@@ -24,7 +25,7 @@ class _resultScreenState extends State<resultScreen> {
    int gmarks = 0;
    int tmarks = 0;
    double  percentage = 0;
-   String? FormatedPercentage;
+   String? formatedPercentage;
    
   @override
    void initState() {
@@ -33,23 +34,15 @@ class _resultScreenState extends State<resultScreen> {
     tmarks = widget.totalQuizMarks;
 
     percentage = ((gmarks / tmarks)*100) ;
-    FormatedPercentage = percentage.toStringAsFixed(2);
+    formatedPercentage = percentage.toStringAsFixed(2);
+
+    
     super.initState();
   // same as for other total marks then use it in text widget to sow marks.
   // this is the method sir do in the class.
 }
 
-void SelectionImage(){
-    if(gmarks>=tmarks){
-      SizedBox(height: 10,);
-  Image(
-  image: AssetImage("images/1.jpg"));
-    }else{
-      Image(
-        image: AssetImage("images/2.webp"),
-      );
-    }
-} 
+
 
 
   @override
@@ -61,6 +54,7 @@ void SelectionImage(){
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+
               Text('You Got marks $gmarks out of $tmarks',
                 textAlign: TextAlign.center
 
@@ -68,16 +62,22 @@ void SelectionImage(){
                 fontSize: 30,
                 fontWeight: FontWeight.bold
               ),),
-              Text('You got $FormatedPercentage %',
-                textAlign: TextAlign.center
+              Column(
+                children: [
+                  Text('You got $formatedPercentage %',
+                    textAlign: TextAlign.center
 
-                , style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold
+                    , style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold
 
 
 
-                ),),
+                    ),),
+                  SizedBox(height: 10,)
+
+                ],
+              ),
 
 
 
@@ -101,7 +101,7 @@ void SelectionImage(){
                   fontSize: 30,
                   color: Colors.white
               ),)
-              ),
+              ), // retry button
 
               SizedBox(height: 10,),
               ElevatedButton(
@@ -111,6 +111,7 @@ void SelectionImage(){
 
                   onPressed: (){
                     setState(() {
+                      SystemNavigator.pop();
                     });
 
                   }
@@ -127,3 +128,4 @@ void SelectionImage(){
     );
   }
 }
+
