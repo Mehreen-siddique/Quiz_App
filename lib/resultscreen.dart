@@ -22,10 +22,17 @@ class resultScreen extends StatefulWidget {
 }
 
 class _resultScreenState extends State<resultScreen> {
-   int gmarks = 0;
-   int tmarks = 0;
+   var gmarks = 0;
+   var tmarks = 0;
    double  percentage = 0;
    String? formatedPercentage;
+   var selectedImage;
+
+
+   List Image_List = [
+     'images/1.jpg'
+     'images/2.webp'
+   ];
    
   @override
    void initState() {
@@ -36,6 +43,15 @@ class _resultScreenState extends State<resultScreen> {
     percentage = ((gmarks / tmarks)*100) ;
     formatedPercentage = percentage.toStringAsFixed(2);
 
+    if(percentage <= 50){
+      selectedImage = Image_List[0];
+
+    } else if (percentage > 50 && percentage <= 80){
+      selectedImage = Image_List[1];
+
+    } else{
+
+    }
     
     super.initState();
   // same as for other total marks then use it in text widget to sow marks.
@@ -121,6 +137,9 @@ class _resultScreenState extends State<resultScreen> {
                   color: Colors.white
               ),)
               ),
+
+              SizedBox(height: 15,),
+              Image(image: AssetImage(selectedImage!)),
             ],
           ),
         ),
