@@ -1,8 +1,7 @@
 
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:quiz/quiz.dart' show quizFile;
+import 'package:quiz/splashScreen.dart' show Mycard;
 
 void main(){
   runApp(mainFile());
@@ -20,7 +19,7 @@ class _mainFileState extends State<mainFile> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-       home: quizFile(),
+       home: Mycard(),
     );
   }
 }

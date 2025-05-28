@@ -26,16 +26,18 @@ class _resultScreenState extends State<resultScreen> {
    var tmarks = 0;
    double  percentage = 0;
    String? formatedPercentage;
-   var selectedImage;
+   String? selectedImage;
 
 
-   List Image_List = [
-     'images/1.jpg'
-     'images/2.webp'
+   List<String> Image_List = [
+    'images/average.webp',
+     'images/high.jpg',
+     'images/low.png',
    ];
    
   @override
    void initState() {
+    super.initState();
     // TODO: implement initState
     gmarks = widget.gotmarks;
     tmarks = widget.totalQuizMarks;
@@ -50,12 +52,11 @@ class _resultScreenState extends State<resultScreen> {
       selectedImage = Image_List[1];
 
     } else{
-
+      selectedImage = Image_List[2];
     }
     
-    super.initState();
-  // same as for other total marks then use it in text widget to sow marks.
-  // this is the method sir do in the class.
+
+
 }
 
 
@@ -78,29 +79,23 @@ class _resultScreenState extends State<resultScreen> {
                 fontSize: 30,
                 fontWeight: FontWeight.bold
               ),),
-              Column(
-                children: [
-                  Text('You got $formatedPercentage %',
-                    textAlign: TextAlign.center
+              Text('You got $formatedPercentage %',
+                textAlign: TextAlign.center
 
-                    , style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold
+                , style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold
 
 
 
-                    ),),
-                  SizedBox(height: 10,)
-
-                ],
-              ),
+                ),),
 
 
 
               SizedBox(height: 10,),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0Xfff64A6BD)
+                      backgroundColor: Color(0Xfff64a6bd)
                   ),
 
                   onPressed: (){
@@ -122,11 +117,16 @@ class _resultScreenState extends State<resultScreen> {
               SizedBox(height: 10,),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0XfffD7B9D5)
+                      backgroundColor: Color(0Xfffd7b9d5)
                   ),
 
                   onPressed: (){
                     setState(() {
+                      showDialog(context: context, builder:(context)=>
+                          AlertDialog(
+                            title: Text("Finish Quiz."),
+                          ),
+                      );
                       SystemNavigator.pop();
                     });
 
@@ -139,7 +139,11 @@ class _resultScreenState extends State<resultScreen> {
               ),
 
               SizedBox(height: 15,),
-              Image(image: AssetImage(selectedImage!)),
+              Image(
+                  height: 200,
+                  width: 200,
+                  image: AssetImage(selectedImage!)),
+
             ],
           ),
         ),

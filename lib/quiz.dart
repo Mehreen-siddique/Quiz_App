@@ -20,20 +20,24 @@ class _quizFileState extends State<quizFile> {
 
   List<Icon> Icons_List = [];
   int marks=0;
-  QuestionBank QA = QuestionBank();
   int totalMarks = 0;
+  QuestionBank QA = QuestionBank();
 
 
 
   void QuizChecking( bool userSelectedAnswer){
+
   if(QA.GetAnswer()==userSelectedAnswer){
-  marks=marks+5;
+    Icons_List.add(Icon(Icons.check,
+    color:Color(0Xfff64a6bd) ,
+    ));
+  marks=marks+2;
   }
-  else{
+  else if (QA.GetAnswer() != userSelectedAnswer){
   Icons_List.add( Icon(
-  Icons.check,
+  Icons.close,
   size: 30,
-  color: Color(0XFFF90A8c3),
+  color: Color(0Xfff90a8c3),
 
   ),);
 
@@ -44,11 +48,17 @@ class _quizFileState extends State<quizFile> {
   void QuizStatus(bool userSelectedAnswer){
     if(QA.CheckFinishQuestion()==true){
 
+
     QuizChecking(userSelectedAnswer);
-    totalMarks = Icons_List.length*5;
+    totalMarks = Icons_List.length*2;
     Navigator.pushReplacement(context, 
     MaterialPageRoute(builder: (context)=>resultScreen(gotmarks: marks, totalQuizMarks: totalMarks))
     );
+   /* showDialog(context: context, builder:(context)=>
+        AlertDialog(
+          title: Text("you reach to result."),
+        ),
+    ); */
     }
     else{
       QuizChecking(userSelectedAnswer);
@@ -57,12 +67,14 @@ class _quizFileState extends State<quizFile> {
     }
   }
 
+
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
   debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: Color(0Xfff64a6bd),
           title: Center(child: Text('$marks',style: TextStyle(
             fontSize: 50,
             fontWeight: FontWeight.bold
@@ -71,10 +83,11 @@ class _quizFileState extends State<quizFile> {
 
         body:
         Padding(padding: EdgeInsets.all(20),
-         child:Column(
+         child:
+         Column(
            mainAxisAlignment: MainAxisAlignment.center,
            children: [
-             Text(QA.GetQuestion(),
+             Text(QA.GetQuestion()!,
                textAlign: TextAlign.center,
                style:
 
@@ -88,19 +101,13 @@ class _quizFileState extends State<quizFile> {
              SizedBox(height: 20,),
              ElevatedButton(
                  style: ElevatedButton.styleFrom(
-                   backgroundColor: Color(0Xfff64A6BD)
+                   backgroundColor: Color(0Xfff64a6bd)
                  ),
 
                  onPressed: (){
                    setState(() {
 
                      QuizStatus(true);
-                     Icons_List.add( Icon(
-                       Icons.check,
-                       size: 30,
-                       color: Color(0XFFF90A8c3),
-
-                     ),);
                    });
 
               }
@@ -113,20 +120,13 @@ class _quizFileState extends State<quizFile> {
              SizedBox(height: 10,),
              ElevatedButton(
                  style: ElevatedButton.styleFrom(
-                     backgroundColor: Color(0XfffD7B9D5)
+                     backgroundColor: Color(0Xfffd7b9d5)
                  ),
 
                  onPressed: (){
 
                    setState(() {
                      QuizStatus(false);
-
-                     Icons_List.add( Icon(
-                       Icons.close,
-                       size: 30,
-                       color: Color(0XFFF90A8c3),
-
-                     ),);
                    });
                  }
                  , child: Text('False', style: TextStyle(
